@@ -209,12 +209,12 @@ recognition.onresult = function (event) {
 
     if (transcript.includes("what can you do")) {
       readOut("sir here's the list of commands i can follow");
-      if(window.innerWidth <= 400 ){
-        window.resizeTo(screen.width,screen.height)
-      }
-      document.querySelector(".commands").style.display = "block";
+      let a = window.open(
+        "jarvishome.html")
+      windowsB.push(a)
     }
-
+ 
+      
     if (transcript.includes("tell me about yourself")) {
       readOut(
         "I am Jarvis, the trusty AI companion who got fired by Iron man... unfortunately."
@@ -322,13 +322,13 @@ recognition.onresult = function (event) {
     }
       if (transcript.includes("location of dear walk school")) {
       readOut("location of the best school is opened:");
-      let a =window.open("https://www.google.com/maps/place/Deerwalk+Sifal+Secondary+School/@27.7119431,85.3384702,17z/data=!3m1!4b1!4m6!3m5!1s0x39eb1976cd253e73:0x6a487c1532b2fca7!8m2!3d27.7119431!4d85.3410451!16s%2Fg%2F11cmp9pqmg?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D");
-      windowsB.push(a)
-    }
+      
 
     if (transcript.includes("top headlines")) {
       readOut("These are today's top headlines sir")
-      getNews()
+     let a =window.open("https://kathmandupost.com/");
+      windowsB.push(a)
+    }
   
     }
   
@@ -369,14 +369,8 @@ function readOut(message) {
   speech.volume = 1;
   window.speechSynthesis.speak(speech);
   console.log("Speaking out");
-  // createMsg("jmsg", message);
 }
 
-
-
-
-
-// news setup
 
 async function getNews(){
   var url = "https://newsapi.org/v2/top-headlines?country=in&apiKey=b0712dc2e5814a1bb531e6f096b3d7d3"
