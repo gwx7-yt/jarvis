@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Jarvis</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto+Mono:wght@300;400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background: linear-gradient(to right, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 10px;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-y: auto;
+            max-height: 90vh;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .welcome {
+            text-align: center;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ff9800, #ff5722);
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .welcome h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+        }
+
+        .welcome p {
+            font-size: 1rem;
+            color: #ffe9c5;
+        }
+
+        .content {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .commands {
+            flex: 2;
+            margin-right: 20px;
+        }
+
+        .commands h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #ffeb3b;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .commands ol {
+            font-family: 'Poppins', sans-serif;
+            color: #ffe9c5;
+            margin-left: 20px;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .commands ol li {
+            margin: 5px 0;
+            padding: 5px 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+
+        .ironman {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ironman img {
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .neon-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #ff6f61, #ff9478);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(255, 111, 97, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .neon-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(255, 111, 97, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+
+            .commands {
+                margin-right: 0;
+            }
+
+            .ironman img {
+                max-width: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="welcome">
+            <h1>Welcome to Jarvis</h1>
+            <p>Your personal AI assistant, ready to assist with your tasks efficiently.</p>
+        </div>
+        <div class="content">
+            <div class="commands">
+                <h3>Here's the commands you can use:</h3>
+                <ol>
+                    <li>"Hi Jarvis" - Greet Jarvis.</li>
+                    <li>"What can you do?" - List of Jarvis' capabilities.</li>
+                    <li>"Close this" - Close opened popups.</li>
+                    <li>"What's the weather?" - Get a quick weather update.</li>
+                    <li>"Show the full weather report" - Detailed weather report.</li>
+                    <li>"Are you there?" - Check Jarvis' presence.</li>
+                    <li>"Shut down" - Stop voice recognition.</li>
+                    <li>"Open Google" - Opens Google in a new tab.</li>
+                    <li>'Search for "your keywords"' - Perform a Google search.</li>
+                    <li>"Open YouTube" - Opens YouTube.</li>
+                    <li>'Play "your keywords"' - Search for videos on YouTube.</li>
+                    <li>"Close this YouTube tab" - Close the opened YouTube tab.</li>
+                    <li>"Open Instagram" - Opens Instagram.</li>
+                    <li>"Connection status" - Check internet connectivity.</li>
+                    <li>"Current time" - Display current time.</li>
+                    <li>"Current charge" - Show battery percentage.</li>
+                    <li>"Charging status" - Check if the device is charging.</li>
+                </ol>
+            </div>
+            <div class="ironman">
+                <img src="C:\Users\User\Documents\kdr\ironman.png" alt="Iron Man">
+            </div>
+        </div>
+        <a href="jarvis.html" class="neon-button">Start with Jarvis</a>
+    </div>
+</body>
+</html>
