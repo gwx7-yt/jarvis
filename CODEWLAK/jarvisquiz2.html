@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hero Quiz</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(45deg, orange, purple);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    .quiz-container {
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 10px;
+      box-shadow: 0 0 15px cyan;
+      padding: 20px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: cyan;
+    }
+
+    .question {
+      margin: 20px 0;
+      font-size: 18px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option {
+      padding: 10px;
+      background: cyan;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .option:hover {
+      transform: scale(1.05);
+      background-color: #00f0ff;
+    }
+
+    .hero-container {
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 15px cyan;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+    }
+
+    .hero-container img {
+      width: 200px;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 15px cyan;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .popup img {
+      width: 150px;
+      margin: 10px 0;
+    }
+
+    .popup button {
+      background: cyan;
+      color: black;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>Hero Quiz</h1>
+    <div class="question" id="question">What do you value the most?</div>
+    <div class="options" id="options"></div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "What do you value the most?",
+        options: ["Justice", "Strength", "Innovation", "Loyalty"]
+      },
+      {
+        question: "What’s your greatest strength?",
+        options: ["Leadership", "Bravery", "Intelligence", "Compassion"]
+      },
+      {
+        question: "Which weapon would you choose?",
+        options: ["Shield", "Hammer", "Armor", "Bare Hands"]
+      },
+      {
+        question: "What motivates you?",
+        options: ["Protecting the innocent", "Becoming the strongest", "Making a difference", "Staying loyal to friends"]
+      },
+      {
+        question: "What’s your weakness?",
+        options: ["Fear of failure", "Impatience", "Overthinking", "Anger"]
+      },
+      {
+        question: "What’s your ideal battle strategy?",
+        options: ["Lead the charge", "Use brute strength", "Outsmart the enemy", "Protect my allies"]
+      },
+      {
+        question: "What’s your greatest achievement?",
+        options: ["Defeating a major villain", "Saving the world", "Building something incredible", "Staying true to my values"]
+      },
+      {
+        question: "How do you deal with adversity?",
+        options: ["Push through no matter the cost", "Use my wit to find a solution", "Power through with determination", "Stay calm and protect others"]
+      },
+      {
+        question: "What’s your ideal environment?",
+        options: ["A peaceful city", "A stormy battlefield", "A lab full of tech", "A place of refuge with friends"]
+      },
+      {
+        question: "How do you see yourself?",
+        options: ["A leader", "A warrior", "An innovator", "A protector"]
+      },
+      {
+        question: "What is your biggest fear?",
+        options: ["Losing control", "Being powerless", "Failing others", "Being betrayed"]
+      }
+    ];
+
+    const results = {
+      Justice: "Captain America",
+      Strength: "Thor",
+      Innovation: "Iron Man",
+      Loyalty: "Hulk"
+    };
+
+    let currentQuestion = 0;
+    let heroTraits = [];
+
+    function nextQuestion(trait) {
+      heroTraits.push(trait);
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        updateQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function updateQuestion() {
+      const quiz = document.querySelector(".quiz-container");
+      const questionEl = document.getElementById("question");
+      const optionsEl = document.getElementById("options");
+
+      questionEl.textContent = questions[currentQuestion].question;
+      optionsEl.innerHTML = '';
+
+      questions[currentQuestion].options.forEach(option => {
+        const btn = document.createElement("button");
+        btn.classList.add("option");
+        btn.textContent = option;
+        btn.onclick = () => nextQuestion(option);
+        optionsEl.appendChild(btn);
+      });
+    }
+
+    function showResult() {
+      const hero = results[heroTraits[0]]; // Simplified logic for the result
+      document.body.innerHTML = `
+        <div class="hero-container">
+          <h1>You are...</h1>
+          <img id="hero-image" src="" alt="Hero Image">
+          <h2 id="hero-name"></h2>
+          <p id="hero-description"></p>
+        </div>
+      `;
+
+      const heroes = {
+        "Captain America": {
+          image: "https://via.placeholder.com/200?text=Captain+America",
+          description: "A symbol of freedom and justice, Captain America is a true leader.",
+          shirt: "https://via.placeholder.com/150?text=Captain+Shirt"
+        },
+        "Thor": {
+          image: "https://via.placeholder.com/200?text=Thor",
+          description: "The God of Thunder with immense strength and a kind heart.",
+          shirt: "https://via.placeholder.com/150?text=Thor+Shirt"
+        },
+        "Iron Man": {
+          image: "https://via.placeholder.com/200?text=Iron+Man",
+          description: "A genius billionaire with innovative technologies to save the world.",
+          shirt: "https://via.placeholder.com/150?text=Iron+Man+Shirt"
+        },
+        "Hulk": {
+          image: "https://via.placeholder.com/200?text=Hulk",
+          description: "A powerhouse of rage and loyalty, the Hulk is unstoppable.",
+          shirt: "https://via.placeholder.com/150?text=Hulk+Shirt"
+        }
+      };
+
+      const heroDetails = heroes[hero] || {
+        image: "https://via.placeholder.com/200?text=Unknown+Hero",
+        description: "A unique hero who defies all categories!",
+        shirt: "https://via.placeholder.com/150?text=Unique+Shirt"
+      };
+
+      document.getElementById("hero-image").src = heroDetails.image;
+      document.getElementById("hero-name").textContent = hero;
+      document.getElementById("hero-description").textContent = heroDetails.description;
+
+      setTimeout(() => {
+        showPopup(heroDetails.shirt);
+      }, 3000); // 3-second delay for the popup
+    }
+
+    function showPopup(shirtImage) {
+      const popup = document.createElement("div");
+      popup.classList.add("popup");
+      popup.innerHTML = `
+        <h2>Specialized Shirt Just for You!</h2>
+        <img src="${shirtImage}" alt="Shirt Image">
+        <button onclick="goToStore()">Visit Merchandise Store</button>
+      `;
+      document.body.appendChild(popup);
+      setTimeout(() => {
+        popup.style.display = "block";
+      }, 0);
+    }
+
+    function goToStore() {
+      window.open("https://merchstore.com", "_blank");
+    }
+
+    updateQuestion(); // Initialize first question
+  </script>
+</body>
+</html>
